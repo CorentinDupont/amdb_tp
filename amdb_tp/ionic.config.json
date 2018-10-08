@@ -1,0 +1,7 @@
+{
+  "name": "amdb_tp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
