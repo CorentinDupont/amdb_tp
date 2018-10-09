@@ -1,6 +1,6 @@
 import { ApiProvider } from './../../providers/api/api';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, IonicPage } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -16,15 +16,31 @@ export class HomePage {
   totalData = 0;
   totalPage = 0;
   subscription;
+  searchString;
 
   constructor(public navCtrl: NavController, public api :ApiProvider) {
-    console.log("init home page")
+    console.log("init home page");
     this.getMovies();
     console.log("movies", this.movies);
     console.log("page", this.page);
     console.log("totalData", this.totalData);
     console.log("totalPage", this.totalPage);
   }
+
+  /**
+   * searchByString
+   */
+  public searchByString(searchInput) {
+    this.movies = []
+    this.page = 1;
+    this.perPage = 0;
+    this.totalData = 0;
+    this.totalPage = 0;
+    this.api.inputString = searchInput.target.value;
+    console.log(this.api.inputString)
+    this.getMovies()
+  }
+
 
   getMovies() {
     this.subscription = this.api.getMovies(this.page)
@@ -38,8 +54,8 @@ export class HomePage {
            this.totalPage = 20;
          },
          error =>  this.errorMessage = <any>error);
-         
-  }
+        }
+
 
   doInfinite(infiniteScroll) {
     this.page = this.page+1;

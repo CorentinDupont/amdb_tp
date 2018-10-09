@@ -16,12 +16,12 @@ export class ApiProvider {
   private apiUrl = 'http://www.omdbapi.com/?';
   private apiKey = '&apikey=feb2a5b1'
 
-  constructor(public http: Http) {
-    
-  }
+  constructor(public http: Http) {}
+
+  inputString="ass";
 
   getMovies(page): Observable<string[]> {
-    return this.http.get(this.apiUrl+"s=ass&page="+page+this.apiKey)
+    return this.http.get(this.apiUrl+"s="+this.inputString+"&page="+page+this.apiKey)
                     .map(this.extractData)
                     .catch(this.handleError);
   }
