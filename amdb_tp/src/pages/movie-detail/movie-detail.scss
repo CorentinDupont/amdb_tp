@@ -1,0 +1,13 @@
+page-movie-detail {
+    .movie_poster{
+        display: block;
+        max-width:100%;
+        width: auto;
+        height: auto;
+    }
+    .remplacement_poster{
+        height:436px;
+        width:300px;
+        background-color:lightgrey;
+    }
+}

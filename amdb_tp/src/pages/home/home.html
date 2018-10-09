@@ -29,9 +29,9 @@
 
   </ion-card>
   <ion-list>
-    <ion-item *ngFor="let movie of movies">
+    <button ion-item detail-push *ngFor="let movie of movies" (click)="goToDetailPage(movie)">
       <h2>{{movie.Title}}</h2>
-    </ion-item>
+    </button>
   </ion-list>
 
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)" >

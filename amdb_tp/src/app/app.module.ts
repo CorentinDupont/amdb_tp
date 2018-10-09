@@ -8,11 +8,13 @@ import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ApiProvider } from '../providers/api/api';
+import { MovieDetailPage } from './../pages/movie-detail/movie-detail';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    MovieDetailPage
   ],
   imports: [
     BrowserModule,
@@ -22,7 +24,9 @@ import { ApiProvider } from '../providers/api/api';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    MovieDetailPage
+
   ],
   providers: [
     StatusBar,

@@ -1,6 +1,7 @@
 import { ApiProvider } from './../../providers/api/api';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { MovieDetailPage } from '../movie-detail/movie-detail';
 
 @Component({
   selector: 'page-home',
@@ -44,7 +45,6 @@ export class HomePage {
   doInfinite(infiniteScroll) {
     this.page = this.page+1;
     setTimeout(() => {
-      this.subscription.unsubscribe();
       this.subscription = this.api.getMovies(this.page)
          .subscribe(
            res => {
@@ -66,6 +66,13 @@ export class HomePage {
 
   movieToString(movie){
     return JSON.stringify(movie)
+  }
+
+  goToDetailPage(movie){
+    console.log(movie.Title)
+    this.navCtrl.push(MovieDetailPage, {
+      data: movie
+    });
   }
 
 }
