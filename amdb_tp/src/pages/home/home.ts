@@ -15,6 +15,7 @@ export class HomePage {
   perPage = 0;
   totalData = 0;
   totalPage = 0;
+  subscription;
 
   constructor(public navCtrl: NavController, public api :ApiProvider) {
     console.log("init home page")
@@ -26,7 +27,7 @@ export class HomePage {
   }
 
   getMovies() {
-    this.api.getMovies(this.page)
+    this.subscription = this.api.getMovies(this.page)
        .subscribe(
          res => {
            console.log(res);
@@ -37,19 +38,22 @@ export class HomePage {
            this.totalPage = 20;
          },
          error =>  this.errorMessage = <any>error);
+         
   }
 
   doInfinite(infiniteScroll) {
     this.page = this.page+1;
     setTimeout(() => {
-      this.api.getMovies(this.page)
+      this.subscription.unsubscribe();
+      this.subscription = this.api.getMovies(this.page)
          .subscribe(
            res => {
+            console.log(res);
             this.data = res;
             this.perPage = 10;
             this.totalData = this.data.totalResults;
             this.totalPage = 20;
-            for(let i=0; i<this.data.Search.legnth; i++) {
+            for(let i=0; i<this.data.Search.length; i++) {
               this.movies.push(this.data.Search[i]);
             }
            },
